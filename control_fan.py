@@ -4,17 +4,18 @@ import os
 from time import sleep
 import RPi.GPIO as GPIO
 
-pin = 18 # The pin ID, edit here to change it
-maxTMP = 40 # The maximum temperature in Celsius after which we trigger the fan
+pin = 18  # The pin ID, edit here to change it
+maxTMP = 40  # The maximum temperature in Celsius after which we trigger the fan
+
 
 def main():
     try:
         setup()
-    while True:
-        controlFan()
-        sleep(5) # Read the temperature every 5 sec, increase or decrease this limit if you want
-    except Exception: # trap a CTRL+C keyboard interrupt
-        GPIO.cleanup() # resets all GPIO ports used by this program
+        while True:
+            controlFan()
+            sleep(5)
+    except Exception:
+        GPIO.cleanup()  # resets all GPIO ports used by this program
 
 
 def setup():
@@ -38,7 +39,7 @@ def controlFan():
     return()
 
 
-def setPin(mode): # A little redundant function but useful if you want to add logging
+def setPin(mode):  # A little redundant function but useful if you want to add logging
     GPIO.output(pin, mode)
     return()
 
